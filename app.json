@@ -16,6 +16,17 @@
       ]
     ],
     "name": "my-app",
-    "slug": "my-app"
+    "slug": "my-app",
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "92621e46-a939-4b04-92d0-1e842931d4e4"
+      }
+    },
+    "android": {
+      "package": "com.fottyseven.myapp"
+    }
   }
 }
