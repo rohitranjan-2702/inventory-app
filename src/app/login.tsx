@@ -48,8 +48,6 @@ export default function Home() {
     );
   }
 
-  console.log("err", error);
-
   return (
     <View className="flex-1 items-center justify-center bg-slate-950 text-gray-100">
       <StatusBar style="auto" />

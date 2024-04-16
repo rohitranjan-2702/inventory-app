@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { useLocalSearchParams } from "expo-router";
 import {
   StyleSheet,
   Text,
@@ -16,25 +15,23 @@ import { AntDesign } from "@expo/vector-icons";
 import useData from "@/hooks/useData";
 
 export default function Home() {
-  const params = useLocalSearchParams();
-  console.log(params.id);
-
-  // item_name, price, quantity, item_id;
-
+  // item_name, category_name, price, quantity;
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
+
   const [price, setPrice] = useState("");
-  const { updateData } = useData("");
+  const { addData } = useData("");
 
   const body = {
     item_name: name,
-    item_id: params.id,
+    category_name: category,
     price: Number(price),
     quantity: Number(quantity),
   };
 
   const submit = async () => {
-    const res = updateData(
+    const res = addData(
       "https://inventory-management-bsxw.onrender.com/api/v1/updateProduct?role=ADMIN",
       body
     );
@@ -42,10 +39,8 @@ export default function Home() {
     console.log(res);
 
     if (res) {
-      Alert.alert("Success");
-      setName("");
-      setPrice("");
-      setQuantity("");
+      Alert.alert("Invalid credentials");
+      setCategory("");
     }
   };
 
@@ -63,7 +58,7 @@ export default function Home() {
       <StatusBar style="auto" />
       <View className="mt-5 space-y-2 flex justify-center items-center flex-col w-full px-8">
         <Text className="text-gray-200 text-3xl font-bold sm:text-3xl mb-2">
-          Update Product
+          Update Sales
         </Text>
         <View className="w-full py-2">
           <Text className="text-gray-400">Name</Text>
@@ -71,6 +66,15 @@ export default function Home() {
             value={name}
             placeholder="Enter Name..."
             onChangeText={setName}
+            className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent border border-gray-200/50 focus:border-indigo-600 shadow-sm rounded-lg"
+          />
+        </View>
+        <View className="mt-3 w-full">
+          <Text className="text-gray-400">Category</Text>
+          <TextInput
+            value={category}
+            onChangeText={setCategory}
+            placeholder="Choose..."
             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent border border-gray-200/50 focus:border-indigo-600 shadow-sm rounded-lg"
           />
         </View>
@@ -99,13 +103,7 @@ export default function Home() {
             onPress={() => submit()}
             className="flex flex-row justify-center w-full  px-4 py-2  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
           >
-            <Text className="text-white font-medium text-xl">Update</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => submit()}
-            className="flex flex-row justify-center w-full  px-4 py-2  bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
-          >
-            <Text className="text-white font-medium text-xl">Update</Text>
+            <Text className="text-white font-medium text-xl">Submit</Text>
           </Pressable>
         </View>
       </View>

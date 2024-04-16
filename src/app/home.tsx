@@ -67,6 +67,13 @@ export default function Page() {
                     <Text className="text-lg font-bold">Add Product</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
+                    onPress={() => router.push("/updateSales")}
+                    className="p-4 bg-gray-300 w-fit rounded-full flex flex-row items-center justify-center gap-4"
+                  >
+                    <AntDesign name="plus" size={24} color="black" />
+                    <Text className="text-lg font-bold">Update Sales</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
                     onPress={() => router.push("/salesman")}
                     className="p-4 bg-gray-300 w-fit rounded-full flex flex-row items-center justify-center gap-4"
                   >

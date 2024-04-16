@@ -21,7 +21,7 @@ export default function Home() {
   const [quantity, setQuantity] = useState("");
 
   const [price, setPrice] = useState("");
-  const { addData } = useData();
+  const { addData } = useData("");
 
   const body = {
     item_name: name,
@@ -39,7 +39,7 @@ export default function Home() {
     console.log(res);
 
     if (res) {
-      Alert.alert("Invalid credentials");
+      Alert.alert("Success");
       setCategory("");
     }
   };

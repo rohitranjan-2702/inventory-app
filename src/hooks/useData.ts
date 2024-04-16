@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useData = () => {
+const useData = (url: string) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -9,12 +9,9 @@ const useData = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const user = await fetch(
-        "https://inventory-management-bsxw.onrender.com/api/v1/getData?role=ADMIN&table=inventoryitem",
-        {
-          method: "GET",
-        }
-      );
+      const user = await fetch(url, {
+        method: "GET",
+      });
       const data = await user.json();
       console.log("data: ", data);
       setData(data);
@@ -83,7 +80,7 @@ const useData = () => {
     setLoading(true);
     try {
       const res = await fetch(url, {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify({ ...body }),
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +98,16 @@ const useData = () => {
     }
   };
 
-  return { data, error, loading, refetch, addData, response };
+  return {
+    data,
+    error,
+    loading,
+    refetch,
+    addData,
+    response,
+    updateData,
+    deleteData,
+  };
 };
 
 export default useData;

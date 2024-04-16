@@ -17,7 +17,9 @@ import { useAuthStore } from "store/authStore";
 import useData from "@/hooks/useData";
 
 export default function Home() {
-  const { data, refetch, error, loading } = useData();
+  const { data, refetch, error, loading } = useData(
+    "https://inventory-management-bsxw.onrender.com/api/v1/getData?role=ADMIN&table=inventoryitem"
+  );
   console.log("data: ", data);
 
   if (loading) {

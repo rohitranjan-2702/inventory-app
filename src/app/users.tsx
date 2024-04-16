@@ -17,7 +17,9 @@ import { useAuthStore } from "store/authStore";
 import useData from "@/hooks/useData";
 
 export default function Home() {
-  const { data, refetch, error, loading } = useData();
+  const { data, refetch, error, loading } = useData(
+    "https://auth-microservice-auth.onrender.com/api/v1/getUsers"
+  );
   console.log("data: ", data);
 
   if (loading) {
@@ -40,10 +42,8 @@ export default function Home() {
       </TouchableOpacity>
       <View className="flex text-white flex-row gap-2 py-4">
         <Text className="text-purple-400 w-24 ">Name</Text>
-        <Text className="text-purple-400 w-18 ">Category</Text>
-        <Text className="text-purple-400 w-10 ">Price</Text>
-        <Text className="text-purple-400 w-16 ">Quantity</Text>
-        <Text className="text-purple-500 w-16 text-center"> Update</Text>
+        <Text className="text-purple-400 w-18 ">Role</Text>
+        <Text className="text-purple-400 w-10 ">Email</Text>
       </View>
       <FlatList
         data={data}
