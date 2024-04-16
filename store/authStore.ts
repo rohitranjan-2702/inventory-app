@@ -49,7 +49,7 @@ export const useAuthStore = create<AuthStore>()(
           set({ loading: false });
           return data;
         } catch (error) {
-          set({ error });
+           set({ error: error });
         }
       },
       setToken: (token: string) => set({ token }),
